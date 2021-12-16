@@ -2,20 +2,30 @@ const express = require('express');
 const app = express()
 var bodyParser = require("body-parser");
 
-
-
-app.get('/', (req, res) => {
-    res.send("hello world");
-});
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//routes with controller 
+const customerController = require('./controllers/Customer');
+app.post('/', customerController.createCustomer);
+app.get('/', customerController.readAllUsers);
+app.get('/:id', customerController.readOneUser);
+app.put('/:id', customerController.updateUser);
+
+
+
+//routes 
+// app.get('/', (req, res) => {
+//     res.send("hello world");
+// });
 
 app.post('/',function(req,res){
     var name = req.body.username;
     console.log(name);
     res.send(name);
 });
+
+
 
 //middleware
 function logOriginalUrl(req, res, next){

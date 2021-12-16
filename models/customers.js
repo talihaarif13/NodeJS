@@ -14,7 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   customers.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      validate : {
+        notEmpty : true,
+        is: /^[a-z]+$/i
+      }
+    },
+    
   }, {
     sequelize,
     modelName: 'customers',
