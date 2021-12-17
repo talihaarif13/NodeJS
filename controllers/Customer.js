@@ -7,7 +7,7 @@ exports.createCustomer = async (req, res, next) => {
         let user = await db.customers.create({'name' : req.body.username});
         res.status(200).json(user);
     }catch(err){
-        //console.log(err);
+        console.log(err);
         if(err instanceof ValidationError){
             res.status(400).json({'error' : err.errors[0].message})
         }else{
@@ -27,10 +27,10 @@ exports.readAllUsers = async (req, res, next) => {
 }
 exports.readOneUser = async (req, res, next) => {
     try{
-        console.log(req.param.id);
+        console.log(req.params.id);
         let user = await db.customers.findAll({
             where: {
-                id : req.param.id
+                id : req.params.id
             }
         });
         res.status(200).json(user);
@@ -41,10 +41,10 @@ exports.readOneUser = async (req, res, next) => {
 }
 exports.updateUser = async (req, res, next) => {
     try{
-        console.log(req.param.id);
-        let user = await User.update({ name: "arif" }, {
+        console.log(req.params.id);
+        let user = await db.customers.update({ name: "arif" }, {
             where: {
-              id: req.param.id
+              id: req.params.id
             }
         });
         res.status(200).json(user);

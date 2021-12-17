@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const customerController = require('./controllers/Customer');
 app.post('/', customerController.createCustomer);
 app.get('/', customerController.readAllUsers);
-app.get('/:id', customerController.readOneUser);
+app.get('/user/:id', customerController.readOneUser);
 app.put('/:id', customerController.updateUser);
 
 

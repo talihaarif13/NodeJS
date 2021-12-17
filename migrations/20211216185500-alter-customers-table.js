@@ -8,6 +8,13 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
+    // return queryInterface.changeColumn(
+    //   'customers', 'mood', 
+    //   { 
+    //     type: Sequelize.ENUM,
+    //     values: ['happy', 'sad', 'neutral']
+    //   }
+    // );
     return queryInterface.addColumn(
       'customers', 'petName', 
       { 

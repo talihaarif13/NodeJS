@@ -20,9 +20,14 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty : true,
         is: /^[a-z]+$/i
       }
-    },
-    
+    }
   }, {
+    hooks: {
+      afterValidate: (customers, options) => {
+        console.log('after create');
+        customers.mood = 'happy';
+      }
+    },
     sequelize,
     modelName: 'customers',
   });
