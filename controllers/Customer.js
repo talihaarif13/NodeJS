@@ -1,10 +1,10 @@
 const { ValidationError } = require('sequelize/dist');
-const db = require('../models/');
+const customerModel = require('../models').customers;
 
 
 exports.createCustomer = async (req, res, next) => {
     try{
-        let user = await db.customers.create({'name' : req.body.username});
+        let user = await customerModel.create({'name' : req.body.username});
         res.status(200).json(user);
     }catch(err){
         console.log(err);
@@ -18,7 +18,7 @@ exports.createCustomer = async (req, res, next) => {
 }
 exports.readAllUsers = async (req, res, next) => {
     try{
-        let users = await db.customers.findAll();
+        let users = await customerModel.findAll();
         res.status(200).json(users);
     }catch(err){
         console.log(err);
@@ -28,7 +28,7 @@ exports.readAllUsers = async (req, res, next) => {
 exports.readOneUser = async (req, res, next) => {
     try{
         console.log(req.params.id);
-        let user = await db.customers.findAll({
+        let user = await customerModel.findAll({
             where: {
                 id : req.params.id
             }
@@ -42,7 +42,7 @@ exports.readOneUser = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
     try{
         console.log(req.params.id);
-        let user = await db.customers.update({ name: "arif" }, {
+        let user = await customerModel.update({ name: "arif" }, {
             where: {
               id: req.params.id
             }
